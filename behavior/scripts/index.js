@@ -61,8 +61,12 @@ exports.handle = (client) => {
 
   client.runFlow({
     classifications: {
+      // map inbound message classifications to names of streams
       goodbye: 'goodbye',
       greeting: 'greeting'
+    },
+    autoResponses: {
+      // configure responses to be automatically sent as predicted by the machine learning model
     },
     streams: {
       goodbye: handleGoodbye,
@@ -71,19 +75,5 @@ exports.handle = (client) => {
       onboarding: [sayHello],
       end: [untrained]
     }
-  })
-
-  client.runFlow({
-    classifications: {
-      // map inbound message classifications to names of streams
-    },
-    autoResponses: {
-      // configure responses to be automatically sent as predicted by the machine learning model
-    },
-    streams: {
-      main: 'onboarding',
-      onboarding: [sayHello],
-      end: [untrained],
-    },
   })
 }
