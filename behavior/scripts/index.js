@@ -35,15 +35,12 @@ exports.handle = (client) => {
 
   const handleGreeting = client.createStep({
     satisfied() {
-      return Boolean(client.getConversationState().greetingSent)
+      return false
     },
 
     prompt() {
       client.addResponse('greeting')
-      client.addImageResponse('https://pbs.twimg.com/profile_images/378800000750533027/918c17d0f03cc65bac507ca2127b23b6.jpeg', 'Hey there!')
-      client.updateConversationState({
-        greetingSent: true
-      })
+      client.addImageResponse('https://pbs.twimg.com/profile_images/378800000750533027/918c17d0f03cc65bac507ca2127b23b6.jpeg')
       client.done()
     }
   })
@@ -61,9 +58,11 @@ exports.handle = (client) => {
 
   client.runFlow({
     classifications: {
+      goodbye: 'goodbye',
       greeting: 'greeting'
     },
     streams: {
+      goodbye: handleGoodbye,
       greeting: handleGreeting,
       main: 'onboarding',
       onboarding: [sayHello],
