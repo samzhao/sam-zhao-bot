@@ -8,12 +8,8 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      client.addResponse('welcome')
-      client.addResponse('provide/documentation', {
-        documentation_link: 'http://docs.init.ai',
-      })
-      client.addResponse('provide/instructions')
-
+      client.addResponse('say_hello')
+      client.addImageResponse('https://pbs.twimg.com/profile_images/378800000750533027/918c17d0f03cc65bac507ca2127b23b6.jpeg', 'This is me.')
       client.updateConversationState({
         helloSent: true
       })
@@ -39,8 +35,7 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      client.addResponse('greeting')
-      client.addImageResponse('https://pbs.twimg.com/profile_images/378800000750533027/918c17d0f03cc65bac507ca2127b23b6.jpeg')
+      client.addResponse('say_hello')
       client.done()
     }
   })
@@ -51,7 +46,7 @@ exports.handle = (client) => {
     },
 
     prompt() {
-      client.addResponse('goodbye')
+      client.addResponse('say_goodbye')
       client.done()
     }
   })

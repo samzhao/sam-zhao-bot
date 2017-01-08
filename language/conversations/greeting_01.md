@@ -7,10 +7,10 @@ Hi
 * greeting
 
 < Hi, human!
-* greeting
+* say_hello
 
 Bye
 * goodbye
 
 < See you later!
-* goodbye
+* say_goodbye
