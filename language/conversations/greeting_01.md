@@ -7,10 +7,10 @@ Hi
 * greeting
 
 < Hi, human!
-* welcome
+* greeting
 
 Bye
 * goodbye
 
 < See you later!
-* welcome
+* goodbye
