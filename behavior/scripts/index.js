@@ -35,14 +35,14 @@ exports.handle = (client) => {
 
   const handleGreeting = client.createStep({
     satisfied() {
-      return Boolean(client.getConversationState().helloSent)
+      return Boolean(client.getConversationState().greetingSent)
     },
 
     prompt() {
       client.addImageResponse('https://pbs.twimg.com/profile_images/378800000750533027/918c17d0f03cc65bac507ca2127b23b6.jpeg')
       client.addResponse('greeting')
       client.updateConversationState({
-        helloSent: true
+        greetingSent: true
       })
       client.done()
     }
@@ -61,15 +61,9 @@ exports.handle = (client) => {
 
   client.runFlow({
     classifications: {
-      // map inbound message classifications to names of streams
-      goodbye: 'goodbye',
       greeting: 'greeting'
     },
-    autoResponses: {
-      // configure responses to be automatically sent as predicted by the machine learning model
-    },
     streams: {
-      goodbye: handleGoodbye,
       greeting: handleGreeting,
       main: 'onboarding',
       onboarding: [sayHello],
