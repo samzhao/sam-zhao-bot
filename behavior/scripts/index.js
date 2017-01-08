@@ -35,12 +35,14 @@ exports.handle = (client) => {
 
   const handleGreeting = client.createStep({
     satisfied() {
-      return false
+      return Boolean(client.getConversationState().helloSent)
     },
 
     prompt() {
       client.addImageResponse('https://pbs.twimg.com/profile_images/378800000750533027/918c17d0f03cc65bac507ca2127b23b6.jpeg')
-      client.addResponse('greeting')
+      client.addResponse('greeting', {
+        helloSent: true
+      })
       client.done()
     }
   })
